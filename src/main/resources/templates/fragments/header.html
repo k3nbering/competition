@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row mt-5" th:fragment="menu">
+    <div class="col-9">
+        <ul class="nav">
+            <li  class="nav-item">
+                <a class="nav-link" th:href="@{/schedule}">Расписание</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/teams}">Команды</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/directors/1}">О соревновании</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-3">
+        <ul class="nav">
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:href="@{/login}">Вход</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:href="@{/singin}">Регистрация</a>
+            </li>
+
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:href="@{/manualLogout}">Выход</a>
+            </li>
+            <li sec:authorize="hasRole('user')" class="nav-item">
+                <a class="nav-link" th:href="@{/profile}">Профиль</a>
+            </li>
+            <li sec:authorize="hasRole('admin')" class="nav-item">
+                <a class="nav-link" th:href="@{/admin}">Управление</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

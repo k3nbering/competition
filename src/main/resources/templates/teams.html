@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/title}"></head>
+<body>
+<div class="container">
+    <div th:replace="~{fragments/header :: menu}"></div>
+    <div class="row mt-2" th:each="team : ${teams}">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <h5 th:text="${team.name}"></h5>
+                            <img th:src="@{/sample-image.jpg}" class="card-img-top" alt="Изображение команды" style="width: 300px">
+                        </div>
+                        <div class="col-8">
+                            <div th:each="player : ${team.players}">
+                                <h5 class="mt-2" th:text="${player.name}"></h5>
+                                <p class="card-text">
+                                    <small class="text-muted" th:text="'возраст: ' + ${player.age}
+                                                                   + ', пол: ' + ${player.gender}
+                                                                   + ', рост: ' + ${player.height}
+                                                                   + ', вес: ' + ${player.weight}">--
+
+                                    </small>
+                                </p>
+                                <p class="card-text" th:text="${player.info}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</div>
+
+<div th:replace="~{fragments/scripts}"></div>
+</body>
+</html>
