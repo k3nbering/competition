@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/title}"></head>
+<body>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-9">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/players}">Игроки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/teams}">Команды</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/schedule}">Расписание</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-3">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Выход</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div th:each="player:${players}">
+        <div class="row mt-2">
+            <div class="col 12">
+                <div>
+                    <h5 class="mt-2" th:text="${player.name}"></h5>
+                    <p>
+                        <small class="text-muted" th:text="'возраст: ' + ${player.age}
+                                                                   + ', пол: ' + ${player.gender}
+                                                                   + ', рост: ' + ${player.height}
+                                                                   + ', вес: ' + ${player.weight}">--
+
+                        </small>
+                    </p>
+                    <p th:text="${player.info}"></p>
+                    <a th:if="!${player.accepted}" th:href="@{/admin/player/{id}(id = ${player.id})}">
+                        <button type="submit" class="btn btn-outline-primary">Одобрить</button>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</div>
+
+<div th:replace="~{fragments/scripts}"></div>
+</body>
+</html>

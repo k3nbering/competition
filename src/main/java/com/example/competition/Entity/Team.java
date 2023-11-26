@@ -17,8 +17,9 @@ public class Team {
     private String name;
     private Integer score;
     private Integer place;
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<Player> players;
+
 
     @Override
     public String toString() {

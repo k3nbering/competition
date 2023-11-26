@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/title}"></head>
+<body>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-9">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/players}">Игроки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/teams}">Команды</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/schedule}">Расписание</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-3">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Выход</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <form method="post" th:action="@{/admin/teams/adplayer/{teamid}(teamid = ${teamid})}">
+        <div class="mt-5">
+            <div th:each="player : ${players}" class="mt-2">
+                <div class="row">
+                    <div class="col-9">
+                        <span th:text="${player.name}"></span>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox" name="pids" class="form-check-input" th:value="${player.id}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class=" btn btn-outline-primary">Добавить</button>
+    </form>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</div>
+
+<div th:replace="~{fragments/scripts}"></div>
+</body>
+</html>

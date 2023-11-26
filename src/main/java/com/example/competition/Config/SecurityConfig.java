@@ -25,6 +25,12 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests((authorization) -> {
             authorization.requestMatchers(mvcMatcherBuilder.pattern("/profile")).hasRole("user");
             authorization.requestMatchers(mvcMatcherBuilder.pattern("/admin")).hasRole("admin");
+            authorization.requestMatchers(mvcMatcherBuilder.pattern("/admin/teams")).hasRole("admin");
+            authorization.requestMatchers(mvcMatcherBuilder.pattern("/admin/schedule")).hasRole("admin");
+            authorization.requestMatchers(mvcMatcherBuilder.pattern("/admin/newteam")).hasRole("admin");
+            authorization.requestMatchers(mvcMatcherBuilder.pattern("/admin/teams/adplayer/{teamid}")).hasRole("admin");
+            authorization.requestMatchers(mvcMatcherBuilder.pattern("/admin/player/{id}")).hasRole("admin");
+            authorization.requestMatchers(mvcMatcherBuilder.pattern("/admin/players")).hasRole("admin");
             authorization.anyRequest().permitAll();
         });
 
